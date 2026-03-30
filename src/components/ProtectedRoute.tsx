@@ -1,8 +1,13 @@
 import { useAuth } from "@/contexts/AuthContext";
 import { Navigate } from "react-router-dom";
 
-const Index = () => {
-  const { session, loading } = useAuth();
+interface ProtectedRouteProps {
+  children: React.ReactNode;
+  requireAdmin?: boolean;
+}
+
+const ProtectedRoute = ({ children, requireAdmin = false }: ProtectedRouteProps) => {
+  const { session, isAdmin, loading } = useAuth();
 
   if (loading) {
     return (
@@ -16,8 +21,11 @@ const Index = () => {
     return <Navigate to="/auth" replace />;
   }
 
-  // Dashboard is rendered directly at "/" via App.tsx routes
-  return null;
+  if (requireAdmin && !isAdmin) {
+    return <Navigate to="/" replace />;
+  }
+
+  return <>{children}</>;
 };
 
-export default Index;
+export default ProtectedRoute;
