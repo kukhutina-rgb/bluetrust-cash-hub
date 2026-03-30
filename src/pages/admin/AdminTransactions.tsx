@@ -16,7 +16,7 @@ const AdminTransactions = () => {
         query = query.or(`reference.ilike.%${search}%,phone_number.ilike.%${search}%`);
       }
       if (statusFilter !== "all") {
-        query = query.eq("status", statusFilter);
+        query = query.eq("status", statusFilter as "pending" | "success" | "failed" | "reversed");
       }
       const { data } = await query.limit(100);
       return data ?? [];
