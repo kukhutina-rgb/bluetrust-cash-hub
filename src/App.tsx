@@ -48,6 +48,7 @@ const App = () => (
               <Route index element={<AdminOverview />} />
               <Route path="users" element={<AdminUsers />} />
               <Route path="transactions" element={<AdminTransactions />} />
+              <Route path="rates" element={<AdminRates />} />
               <Route path="config" element={<AdminConfig />} />
             </Route>
 

@@ -2,7 +2,7 @@ import BottomNav from "@/components/BottomNav";
 import { useAuth } from "@/contexts/AuthContext";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
-import { ArrowLeft, User, Shield, Lock, LogOut, ChevronRight } from "lucide-react";
+import { ArrowLeft, User, Shield, Lock, LogOut, ChevronRight, Globe } from "lucide-react";
 
 const Profile = () => {
   const { profile, signOut, isAdmin } = useAuth();
