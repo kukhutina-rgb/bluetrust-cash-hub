@@ -1,5 +1,4 @@
 import { NavLink } from "@/components/NavLink";
-import { useAuth } from "@/contexts/AuthContext";
 import {
   Sidebar,
   SidebarContent,
@@ -11,13 +10,14 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar";
-import { Users, ArrowLeftRight, Settings, LayoutDashboard, ArrowLeft, Droplets } from "lucide-react";
+import { Users, ArrowLeftRight, Settings, LayoutDashboard, ArrowLeft, Globe, RefreshCw } from "lucide-react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 const adminItems = [
   { title: "Overview", url: "/admin", icon: LayoutDashboard },
   { title: "Users & KYC", url: "/admin/users", icon: Users },
   { title: "Transactions", url: "/admin/transactions", icon: ArrowLeftRight },
+  { title: "Exchange Rates", url: "/admin/rates", icon: RefreshCw },
   { title: "Configuration", url: "/admin/config", icon: Settings },
 ];
 
@@ -36,8 +36,8 @@ export function AdminSidebar() {
         <SidebarGroup>
           {!collapsed && (
             <div className="flex items-center gap-2 px-3 py-3">
-              <Droplets className="h-5 w-5 text-sidebar-primary" />
-              <span className="font-display font-bold text-sm">BlueStream Admin</span>
+              <Globe className="h-5 w-5 text-sidebar-primary" />
+              <span className="font-display font-bold text-sm">AbanRemit Admin</span>
             </div>
           )}
           <SidebarGroupLabel>Management</SidebarGroupLabel>

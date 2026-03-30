@@ -71,6 +71,63 @@ export type Database = {
         }
         Relationships: []
       }
+      countries: {
+        Row: {
+          currency_code: string
+          currency_name: string
+          flag_emoji: string
+          id: string
+          iso_code: string
+          name: string
+          phone_code: string
+        }
+        Insert: {
+          currency_code: string
+          currency_name: string
+          flag_emoji?: string
+          id?: string
+          iso_code: string
+          name: string
+          phone_code: string
+        }
+        Update: {
+          currency_code?: string
+          currency_name?: string
+          flag_emoji?: string
+          id?: string
+          iso_code?: string
+          name?: string
+          phone_code?: string
+        }
+        Relationships: []
+      }
+      exchange_rates: {
+        Row: {
+          base_currency: string
+          id: string
+          rate: number
+          target_currency: string
+          updated_at: string
+          updated_by: string | null
+        }
+        Insert: {
+          base_currency: string
+          id?: string
+          rate: number
+          target_currency: string
+          updated_at?: string
+          updated_by?: string | null
+        }
+        Update: {
+          base_currency?: string
+          id?: string
+          rate?: number
+          target_currency?: string
+          updated_at?: string
+          updated_by?: string | null
+        }
+        Relationships: []
+      }
       kyc_documents: {
         Row: {
           id: string
@@ -103,6 +160,66 @@ export type Database = {
           user_id?: string
         }
         Relationships: []
+      }
+      ledger: {
+        Row: {
+          amount: number
+          balance_after: number
+          balance_before: number
+          created_at: string
+          currency: string
+          description: string | null
+          entry_type: Database["public"]["Enums"]["ledger_entry_type"]
+          id: string
+          reference: string
+          transaction_id: string | null
+          user_id: string
+          wallet_id: string
+        }
+        Insert: {
+          amount: number
+          balance_after: number
+          balance_before: number
+          created_at?: string
+          currency: string
+          description?: string | null
+          entry_type: Database["public"]["Enums"]["ledger_entry_type"]
+          id?: string
+          reference: string
+          transaction_id?: string | null
+          user_id: string
+          wallet_id: string
+        }
+        Update: {
+          amount?: number
+          balance_after?: number
+          balance_before?: number
+          created_at?: string
+          currency?: string
+          description?: string | null
+          entry_type?: Database["public"]["Enums"]["ledger_entry_type"]
+          id?: string
+          reference?: string
+          transaction_id?: string | null
+          user_id?: string
+          wallet_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "ledger_transaction_id_fkey"
+            columns: ["transaction_id"]
+            isOneToOne: false
+            referencedRelation: "transactions"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "ledger_wallet_id_fkey"
+            columns: ["wallet_id"]
+            isOneToOne: false
+            referencedRelation: "wallets"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       notifications: {
         Row: {
@@ -340,6 +457,7 @@ export type Database = {
     Enums: {
       app_role: "admin" | "user"
       kyc_status: "pending" | "approved" | "rejected"
+      ledger_entry_type: "debit" | "credit"
       notification_type: "in_app" | "sms"
       transaction_status: "pending" | "success" | "failed" | "reversed"
       transaction_type:
@@ -482,6 +600,7 @@ export const Constants = {
     Enums: {
       app_role: ["admin", "user"],
       kyc_status: ["pending", "approved", "rejected"],
+      ledger_entry_type: ["debit", "credit"],
       notification_type: ["in_app", "sms"],
       transaction_status: ["pending", "success", "failed", "reversed"],
       transaction_type: [
