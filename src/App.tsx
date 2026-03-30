@@ -19,6 +19,7 @@ import AdminOverview from "./pages/admin/AdminOverview";
 import AdminUsers from "./pages/admin/AdminUsers";
 import AdminTransactions from "./pages/admin/AdminTransactions";
 import AdminConfig from "./pages/admin/AdminConfig";
+import AdminRates from "./pages/admin/AdminRates";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
