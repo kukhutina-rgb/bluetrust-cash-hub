@@ -14,6 +14,10 @@ import Transactions from "./pages/Transactions";
 import WalletPage from "./pages/WalletPage";
 import Profile from "./pages/Profile";
 import Notifications from "./pages/Notifications";
+import SendMoney from "./pages/SendMoney";
+import Withdraw from "./pages/Withdraw";
+import Deposit from "./pages/Deposit";
+import BuyAirtime from "./pages/BuyAirtime";
 import AdminLayout from "./pages/admin/AdminLayout";
 import AdminOverview from "./pages/admin/AdminOverview";
 import AdminUsers from "./pages/admin/AdminUsers";
@@ -42,6 +46,10 @@ const App = () => (
             <Route path="/wallet" element={<ProtectedRoute><WalletPage /></ProtectedRoute>} />
             <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
             <Route path="/notifications" element={<ProtectedRoute><Notifications /></ProtectedRoute>} />
+            <Route path="/send" element={<ProtectedRoute><SendMoney /></ProtectedRoute>} />
+            <Route path="/withdraw" element={<ProtectedRoute><Withdraw /></ProtectedRoute>} />
+            <Route path="/deposit" element={<ProtectedRoute><Deposit /></ProtectedRoute>} />
+            <Route path="/airtime" element={<ProtectedRoute><BuyAirtime /></ProtectedRoute>} />
 
             {/* Admin routes */}
             <Route path="/admin" element={<ProtectedRoute requireAdmin><AdminLayout /></ProtectedRoute>}>
